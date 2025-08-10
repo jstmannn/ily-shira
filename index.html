@@ -57,10 +57,10 @@
         Copyright © <script>document.write(new Date().getFullYear())</script> <a href='https://jstmann.github.io'>jstmann.github.io</a>
     </div>
     <!-- Audio element for background music -->
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="audio/niki.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="backgroundMusic" loop>
+    <source src="audio/niki.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 </div>
 <script type="text/javascript">
     var offsetX = $("#loveHeart").width() / 2;
@@ -72,6 +72,17 @@
     together.setSeconds(0);
     together.setMilliseconds(0);
 
+    let musicPlayed = false;
+    document.addEventListener("click", function () {
+        if (!musicPlayed) {
+            const audio = document.getElementById("backgroundMusic");
+            audio.play().catch(function (error) {
+                console.error("Autoplay prevented:", error);
+            });
+            musicPlayed = true;
+        }
+    });
+    
     // WhatsApp integration
     $(document).ready(function() {
 
@@ -125,4 +136,5 @@
     }
 </script>
 </body>
+
 </html>
